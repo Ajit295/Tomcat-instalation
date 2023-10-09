@@ -1,0 +1,15 @@
+1. Once Tomcat installed, then configure below users in /opt/tomcat/conf/tomcat-user.xml file. 
+   removed existing user list and add below users:
+ <role rolename="manager-gui"/>
+ <role rolename="manager-script"/>
+ <role rolename="manager-jmx"/>
+ <role rolename="manager-status"/>
+ <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+ <user username="deployer" password="deployer" roles="manager-script"/>
+ <user username="tomcat" password="s3cret" roles="manager-gui"/>
+
+2. Alos, create the links files for startup.sh and shutdown.sh script
+    ln -s /opt/tomcat/bin/startup.sh /usr/local/bin/tomcatup
+    ln -s /opt/tomcat/bin/shutdown.sh /usr/local/bin/tomcatdown
+
+3. Once created, we can use tomcatup and tomcatdown instead of .sh scripts anywhere from the server.
